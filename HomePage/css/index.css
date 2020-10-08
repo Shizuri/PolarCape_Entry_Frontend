@@ -1,19 +1,81 @@
+:root {
+    --color-background: #e5eaf5;
+    --color-font: #494d5f;
+    --color-warning: #d83694;
+    --color-accent: #d0bdf4;
+}
+
+body {
+    background-color: var(--color-background);
+    box-sizing: border-box;
+    font-family: 'Dosis', sans-serif;;
+    font-weight: 400;
+}
+
 .form-container {
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 2rem;
+    color: var(--color-font);
 }
 
-.index-name {
+.index-name-label {
+    display: block;
+    margin-bottom: 10px;
+    margin-left: 5px;
+}
+
+.index-name-input {
+    box-sizing: border-box;
+    border: 2px solid var(--color-font);
     border-radius: 5px;
+    width: 400px;
+    height: 46px;
+    color: var(--color-font);
+    padding-left: 5px;
+    /* Firefox needs this or it looks like it's blushing ↓ */
+    box-shadow: none;
 }
 
-.index-name:focus {
+.index-name-input:focus {
     outline: none;
 }
 
-.index-name:invalid {
-    border: 2px solid red;
+.index-name-input:invalid {
+    background-color: var(--color-background);
+    border: 2px solid var(--color-warning);
+}
+
+.index-name-input:valid {
+    background-color: var(--color-background);
+    border: 2px solid var(--color-font);
+}
+
+.index-name-input::placeholder {
+    /* Don't change anything here, it's covered in the two previous rules */
+    /* If you do, the invalid and valid rules start to "leak" from behind */
+}
+
+/* The way that the input field looks when the placeholder is show */
+.index-name-input:placeholder-shown {
+    border: 2px solid var(--color-font);
+}
+
+.index-submit-button {
+    border: none;
+    background-color: var(--color-accent);
+    color: var(--color-font);
+    height: 46px;
+    width: auto;
+    border-radius: 5px;
+    padding: 0 10px;
+    cursor: pointer;
+    transition: background-color 0.5s ease-in, color 0.5s ease-in;
+}
+
+.index-submit-button:hover {
+    background-color: var(--color-font);
+    color: var(--color-accent);
 }

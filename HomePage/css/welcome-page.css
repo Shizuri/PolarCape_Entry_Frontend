@@ -1,6 +1,21 @@
+:root {
+    --color-background: #e5eaf5;
+    --color-font: #494d5f;
+    --color-warning: #d83694;
+    --color-accent: #d0bdf4;
+}
+
+body {
+    background-color: var(--color-background);
+    box-sizing: border-box;
+    font-family: 'Dosis', sans-serif;
+    font-weight: 400;
+}
+
 .welcome-page-container {
     height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     font-size: 2rem;
@@ -8,4 +23,26 @@
 
 .welcome-page-message {
     text-align: center;
+}
+
+#action-page-name {
+    font-weight: 600;
+}
+
+.welcome-page-back-button {
+    margin-top: 50px;
+    border: none;
+    background-color: var(--color-accent);
+    color: var(--color-font);
+    height: 46px;
+    width: auto;
+    border-radius: 5px;
+    padding: 0 10px;
+    cursor: pointer;
+    transition: background-color 0.5s ease-in, color 0.5s ease-in;
+}
+
+.welcome-page-back-button:hover {
+    background-color: var(--color-font);
+    color: var(--color-accent);
 }

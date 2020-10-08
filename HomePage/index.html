@@ -9,19 +9,20 @@
 
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/index.css">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dosis&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <div class="form-container">
         <form action="/welcome-page.html" method="get">
-            <label for="name">Name:</label><br>
-            <input class="index-name" type="text" id="index-name" name="index-name" value=""
-                placeholder="Your name here" required minlength="3" pattern="^[A-Z][a-zA-Z0-9]*$">
-            <input type="submit" value="Submit">
+            <label class="index-name-label" for="name">Name:</label>
+            <input class="index-name-input" type="text" id="index-name-input" name="index-name-input" value="Zdravko"
+                placeholder="Your name here" required minlength="3" pattern="^[A-Z].*">
+            <input class="index-submit-button" type="submit" value="Submit">
         </form>
     </div>
-
-    <!-- <button onclick="bob()">blah!</button> -->
 
     <script src="js/index.js"></script>
 </body>
