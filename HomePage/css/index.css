@@ -1,0 +1,19 @@
+.form-container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.index-name {
+    border-radius: 5px;
+}
+
+.index-name:focus {
+    outline: none;
+}
+
+.index-name:invalid {
+    border: 2px solid red;
+}

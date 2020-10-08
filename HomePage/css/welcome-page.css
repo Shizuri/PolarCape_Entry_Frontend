@@ -1,0 +1,11 @@
+.welcome-page-container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.welcome-page-message {
+    text-align: center;
+}

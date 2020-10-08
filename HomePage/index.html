@@ -1,0 +1,29 @@
+<!doctype html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Home Page</title>
+    <meta name="description" content="Home Page assignment for PolarCape">
+    <meta name="author" content="Zdravko Mavkov">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <div class="form-container">
+        <form action="/welcome-page.html" method="get">
+            <label for="name">Name:</label><br>
+            <input class="index-name" type="text" id="index-name" name="index-name" value=""
+                placeholder="Your name here" required minlength="3" pattern="^[A-Z][a-zA-Z0-9]*$">
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <!-- <button onclick="bob()">blah!</button> -->
+
+    <script src="js/index.js"></script>
+</body>
+
+</html>
