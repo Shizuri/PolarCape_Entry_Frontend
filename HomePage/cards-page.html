@@ -2,13 +2,13 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Action Page</title>
+    <title>Cards Page</title>
     <meta name="description" content="Home Page assignment for PolarCape">
     <meta name="author" content="Zdravko Mavkov">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/welcome-page.css">
+    <link rel="stylesheet" href="css/cards-page.css">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;600&display=swap" rel="stylesheet">
@@ -16,13 +16,14 @@
 
 <body>
 
-    <div class="welcome-page-container">
-        <div class="welcome-page-message">Hello <span id="action-page-name"></span>!<br />I hope you are having a nice
-            day.</div>
-        <button class="welcome-page-back-button" onclick="goBack()">back</button>
+    <div class="cards-page-container">
+        <div class="cards-page-message">Hello <span id="cards-page-name"></span>!</div>
+        <div id="the-element"></div>
+        <button class="cards-page-back-button" onclick="goBack()">back</button>
+        <button class="cards-page-back-button" onclick="checkCards()">check cards</button>
     </div>
 
-    <script src="js/welcome-page.js"></script>
+    <script src="js/cards-page.js"></script>
 </body>
 
 </html>

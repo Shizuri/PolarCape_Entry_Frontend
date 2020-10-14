@@ -12,8 +12,8 @@ body {
     font-weight: 400;
 }
 
-.welcome-page-container {
-    height: 100vh;
+.cards-page-container {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,15 +21,15 @@ body {
     font-size: 2rem;
 }
 
-.welcome-page-message {
+.cards-page-message {
     text-align: center;
 }
 
-#action-page-name {
+#cards-page-name {
     font-weight: 600;
 }
 
-.welcome-page-back-button {
+.cards-page-back-button {
     margin-top: 50px;
     border: none;
     background-color: var(--color-accent);
@@ -42,7 +42,7 @@ body {
     transition: background-color 0.5s ease-in, color 0.5s ease-in;
 }
 
-.welcome-page-back-button:hover {
+.cards-page-back-button:hover {
     background-color: var(--color-font);
     color: var(--color-accent);
 }
