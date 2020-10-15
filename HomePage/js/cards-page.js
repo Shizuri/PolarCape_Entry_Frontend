@@ -76,11 +76,10 @@ const renderData = data => {
     theElement.replaceChildren()
     // Go through each element and append it in the list
     data.forEach(card => {
-        // console.log('CARD: ', card)
-        const p = document.createElement('p')
-        p.className = 'the-class'
-        p.innerHTML = `<strong>Name: </strong> ${card.name} <strong>Colors: </strong> ${card.colors} <strong>Types: </strong> ${card.types}`
-        theElement.append(p)
+        const div = document.createElement('div')
+        div.className = 'the-class'
+        div.innerHTML = `<strong>Name: </strong> ${card.name} <strong>Colors: </strong> ${card.colors} <strong>Types: </strong> ${card.types}`
+        theElement.append(div)
     })
 }
 
@@ -99,7 +98,7 @@ const getSelectedOptions = element => {
     return options
 }
 
-const sortCards = element => {
+const sortCardsByColor = element => {
     // let colorSelector = document.getElementById('card-color-selector')
 
     cardColorSelectedValues = getSelectedOptions(element)
