@@ -46,3 +46,9 @@ body {
     background-color: var(--color-font);
     color: var(--color-accent);
 }
+
+/* DELETE AFTER TESTING */
+
+.the-class {
+    font-size: 1rem;
+}

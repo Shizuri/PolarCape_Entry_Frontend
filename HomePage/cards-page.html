@@ -18,6 +18,14 @@
 
     <div class="cards-page-container">
         <div class="cards-page-message">Hello <span id="cards-page-name"></span>!</div>
+        <label for='card-color-selector'>Filter cards by <strong>color</strong></label>
+        <select class='CardsPage-card-color-selector' id='card-color-selector' multiple onchange="sortCards(this)">
+            <option class='card-color-option' value='White'>White</option>
+            <option class='card-color-option' value='Blue'>Blue</option>
+            <option class='card-color-option' value='Black'>Black</option>
+            <option class='card-color-option' value='Red'>Red</option>
+            <option class='card-color-option' value='Green'>Green</option>
+        </select>
         <div id="the-element"></div>
         <button class="cards-page-back-button" onclick="goBack()">back</button>
         <button class="cards-page-back-button" onclick="checkCards()">check cards</button>
