@@ -11,6 +11,7 @@ let cards = [] // All the cards cards
 let filteredCards = [] // Filtered cards
 
 let cardColorSelectedValues = [] // The colors selected in the multi select
+let cardTypeSelectedValues = [] // The types selected in the multi select
 
 const urlParams = new URLSearchParams(window.location.search)
 const name = urlParams.get('index-name-input')
@@ -66,9 +67,10 @@ const goBack = () => {
 }
 
 const checkCards = () => {
-    console.log('CARDS: ', cards)
+    console.log('All CARDS: ', cards)
 }
 
+// Function that renders the cards to the page
 const renderData = data => {
     // Get the element that will be updated
     const theElement = document.querySelector('#the-element')
@@ -83,6 +85,7 @@ const renderData = data => {
     })
 }
 
+// Helper function to get the elements in a multi select that are currently selected by the user
 const getSelectedOptions = element => {
     let options = []
     let option = null
@@ -98,19 +101,55 @@ const getSelectedOptions = element => {
     return options
 }
 
-const sortCardsByColor = element => {
-    // let colorSelector = document.getElementById('card-color-selector')
+// const sortCardsByColor2 = element => {
+//     // let colorSelector = document.getElementById('card-color-selector')
 
-    cardColorSelectedValues = getSelectedOptions(element)
-    // console.log(getSelectedOptions(element))
+//     cardColorSelectedValues = getSelectedOptions(element)
+//     // console.log('cardColorSelectedValues: ', cardColorSelectedValues)
 
-    // console.log(element)
-    // console.log(colorSelector)
-    // console.log(colorSelector.value)
-    // console.log(colorSelector.target)
+//     // console.log(element)
+//     // console.log(colorSelector)
+//     // console.log(colorSelector.value)
+//     // console.log(colorSelector.target)
 
-    // Filter by card color
-    const cardColorSelectedValuesFilterResult = cards.filter(card => {
+//     // Filter by card color
+//     const cardColorSelectedValuesFilterResult = cards.filter(card => {
+//         // Check if the card has a color provided by the API
+//         if (card.colors) {
+//             for (let i = 0; i < card.colors.length; i++) {
+//                 for (let j = 0; j < cardColorSelectedValues.length; j++) {
+//                     if (card.colors[i].toLowerCase().includes(cardColorSelectedValues[j].toLowerCase())) {
+//                         // If any member of the card types array is found in the array of selected types, filter it in
+//                         // This will make sure that if the card has more than one type it will still be shown
+//                         return true
+//                     }
+//                 }
+//             }
+//         }
+//         return false
+//     })
+
+//     if (cardColorSelectedValues.length > 0) {
+//         filteredCards = cardColorSelectedValuesFilterResult
+//     } else {
+//         // If no items are selected, return all items
+
+//         // filteredCards = cards
+//     }
+
+//     renderData(filteredCards)
+// }
+
+const filterCards = () => {
+    // Reset filtered cards to be all cards and then start filtering
+    filteredCards = cards
+    // FILTER BY COLOR
+    // Get the color element selector
+    const colorSelector = document.getElementById('card-color-selector')
+    // Get the values selected by the user
+    cardColorSelectedValues = getSelectedOptions(colorSelector)
+    // Filter cards by card color
+    const cardsFilteredByColor = filteredCards.filter(card => {
         // Check if the card has a color provided by the API
         if (card.colors) {
             for (let i = 0; i < card.colors.length; i++) {
@@ -125,8 +164,35 @@ const sortCardsByColor = element => {
         }
         return false
     })
-    if (cardColorSelectedValues.length > 0) {
-        filteredCards = cardColorSelectedValuesFilterResult
+    // Update the list on if an item is selected
+    if (cardColorSelectedValues.length > 0){
+        filteredCards = cardsFilteredByColor
+    }
+
+    // FILTER BY TYPE
+    // Get the color element selector
+    const typeSelector = document.getElementById('card-type-selector')
+    // Get the values selected by the user
+    cardTypeSelectedValues = getSelectedOptions(typeSelector)
+    // Filter cards by card color
+    const cardsFilteredByType = filteredCards.filter(card => {
+        // Check if the card has a type provided by the API
+        if (card.types) {
+            for (let i = 0; i < card.types.length; i++) {
+                for (let j = 0; j < cardTypeSelectedValues.length; j++) {
+                    if (card.types[i].toLowerCase().includes(cardTypeSelectedValues[j].toLowerCase())) {
+                        // If any member of the card types array is found in the array of selected types, filter it in
+                        // This will make sure that if the card has more than one type it will still be shown
+                        return true
+                    }
+                }
+            }
+        }
+        return false
+    })
+    // Update the list on if an item is selected
+    if (cardTypeSelectedValues.length > 0){
+        filteredCards = cardsFilteredByType
     }
 
     renderData(filteredCards)
