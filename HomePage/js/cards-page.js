@@ -101,44 +101,10 @@ const getSelectedOptions = element => {
     return options
 }
 
-// const sortCardsByColor2 = element => {
-//     // let colorSelector = document.getElementById('card-color-selector')
-
-//     cardColorSelectedValues = getSelectedOptions(element)
-//     // console.log('cardColorSelectedValues: ', cardColorSelectedValues)
-
-//     // console.log(element)
-//     // console.log(colorSelector)
-//     // console.log(colorSelector.value)
-//     // console.log(colorSelector.target)
-
-//     // Filter by card color
-//     const cardColorSelectedValuesFilterResult = cards.filter(card => {
-//         // Check if the card has a color provided by the API
-//         if (card.colors) {
-//             for (let i = 0; i < card.colors.length; i++) {
-//                 for (let j = 0; j < cardColorSelectedValues.length; j++) {
-//                     if (card.colors[i].toLowerCase().includes(cardColorSelectedValues[j].toLowerCase())) {
-//                         // If any member of the card types array is found in the array of selected types, filter it in
-//                         // This will make sure that if the card has more than one type it will still be shown
-//                         return true
-//                     }
-//                 }
-//             }
-//         }
-//         return false
-//     })
-
-//     if (cardColorSelectedValues.length > 0) {
-//         filteredCards = cardColorSelectedValuesFilterResult
-//     } else {
-//         // If no items are selected, return all items
-
-//         // filteredCards = cards
-//     }
-
-//     renderData(filteredCards)
-// }
+document.getElementById('card-name-filter-selector').oninput = element => {
+    // save this into global val than check in filterCards
+    console.log('element: ', element.target.value)
+}
 
 const filterCards = () => {
     // Reset filtered cards to be all cards and then start filtering
