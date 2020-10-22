@@ -13,8 +13,16 @@ body {
 }
 
 .cards-page-container {
+    font-size: 2rem;
+}
+
+.loading-cards {
+    /* display: inline; */
+}
+
+.cards-page-content {
     min-height: 100vh;
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;

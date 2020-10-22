@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load cards
     const getCards = () => {
         // GET Request.
-        fetch('https://raw.githubusercontent.com/Shizuri/entry_frontend_react_polar/master/src/cards.json') // mock
-            // fetch('https://api.magicthegathering.io/v1/cards?random=true&pageSize=100&language=English/')
+        // fetch('https://raw.githubusercontent.com/Shizuri/entry_frontend_react_polar/master/src/cards.json') // mock
+            fetch('https://api.magicthegathering.io/v1/cards?random=true&pageSize=100&language=English/')
             // Handle success
             // Convert to json
             .then(response => {
@@ -43,6 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     filteredCards = data.cards // Set filtered cards that will be displayed
                     loaded = true // Cards are loaded
                     renderData(data.cards)
+                    document.getElementById('cards-page-content').style.display = 'flex'
+                    document.getElementById('loading-cards').style.display = 'none'
                 }
             })
             // Catch errors
@@ -65,10 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const goBack = () => {
     history.back()
-}
-
-const checkCards = () => {
-    console.log('All CARDS: ', cards)
 }
 
 // Function that renders the cards to the page
