@@ -1,5 +1,5 @@
 // Custom validation for a better user experience
-const indexName = document.getElementById('index-name-input')
+const indexName = document.getElementById('name')
 
 indexName.addEventListener('input', function (event) {
     if (indexName.validity.patternMismatch) {

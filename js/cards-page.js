@@ -15,7 +15,7 @@ let cardTypeSelectedValues = [] // The types selected in the multi select
 let searchTerm = '' // The search term to search cards by name or text
 
 const urlParams = new URLSearchParams(window.location.search)
-const name = urlParams.get('index-name-input')
+const name = urlParams.get('name')
 
 // A safe way to inject the text, unlike innerHTML
 document.getElementById('cards-page-name').textContent = name
@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load cards
     const getCards = () => {
         // GET Request.
-        // fetch('https://api.magicthegathering.io/v1/cards?random=true&pageSize=100&language=English/')
-        fetch('https://raw.githubusercontent.com/Shizuri/entry_frontend_react_polar/master/src/cards.json') // mock api for testing
+        fetch('https://api.magicthegathering.io/v1/cards?random=true&pageSize=100&language=English/')
+        // fetch('https://raw.githubusercontent.com/Shizuri/entry_frontend_react_polar/master/src/cards.json') // mock api for testing
             // Handle success
             // Convert to json
             .then(response => {
@@ -88,7 +88,7 @@ const renderCards = data => {
             cardImagePanelDiv.innerHTML = `<div><img class="card-image" src=${card.imageUrl} alt=${card.name}</div>`
         } else {
             cardImagePanelDiv.innerHTML = `<div>
-                                                <img class="card-image" src=/images/MtGCardBack.jpg alt=${card.name}>
+                                                <img class="card-image" src=images/MtGCardBack.jpg alt=${card.name}>
                                                 <div class="card-image-not-found">Image not found</div>
                                            </div>`
         }
