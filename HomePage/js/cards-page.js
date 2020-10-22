@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load cards
     const getCards = () => {
         // GET Request.
-        // fetch('https://raw.githubusercontent.com/Shizuri/entry_frontend_react_polar/master/src/cards.json') // mock
-            fetch('https://api.magicthegathering.io/v1/cards?random=true&pageSize=100&language=English/')
+        // fetch('https://api.magicthegathering.io/v1/cards?random=true&pageSize=100&language=English/')
+            fetch('https://raw.githubusercontent.com/Shizuri/entry_frontend_react_polar/master/src/cards.json') // mock api for testing
             // Handle success
             // Convert to json
             .then(response => {
@@ -82,6 +82,8 @@ const renderData = data => {
         div.innerHTML = `<strong>Name: </strong> ${card.name} <strong>Colors: </strong> ${card.colors} <strong>Types: </strong> ${card.types}`
         theElement.append(div)
     })
+
+    document.getElementById('cards-number').textContent = filteredCards.length
 }
 
 // Helper function to get the elements in a multi select that are currently selected by the user
@@ -152,7 +154,7 @@ const filterCards = () => {
     })
 
     // Update the list only if at least one item is selected
-    if (cardColorSelectedValues.length > 0){
+    if (cardColorSelectedValues.length > 0) {
         filteredCards = cardsFilteredByColor
     }
 
@@ -179,7 +181,7 @@ const filterCards = () => {
     })
 
     // Update the list only if at least one item is selected
-    if (cardTypeSelectedValues.length > 0){
+    if (cardTypeSelectedValues.length > 0) {
         filteredCards = cardsFilteredByType
     }
 
@@ -198,7 +200,7 @@ const filterCards = () => {
     })
 
     // Update the list only if at least one letter is typed in the search box
-    if (searchTerm.length > 0){
+    if (searchTerm.length > 0) {
         filteredCards = cardsFilteredByNameOrText
     }
 

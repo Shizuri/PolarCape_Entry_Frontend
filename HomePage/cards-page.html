@@ -9,72 +9,106 @@
 
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/cards-page.css">
+    <link rel="stylesheet" href="css/loading-animation.css">
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
     <div class="cards-page-container">
-        <div class="cards-page-message">Hello <span id="cards-page-name"></span>!</div>
+        <h1 class="cards-page-message">Hello, <span id="cards-page-name"></span>!</h1>
 
-        <div class="loading-cards" id="loading-cards">Loading...</div>
+        <!-- Loading animation -->
+        <div class="loading-cards" id="loading-cards">
+            <div class="loadingio-spinner-spinner-ssc7g0lctwf">
+                <div class="ldio-9mbi9huikr">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+            <div>Loading cards...</div>
+        </div>
+
         <div class="cards-page-content" id="cards-page-content">
-            <label for="cards-name-filter-selector">Filter cards by <strong>name</strong> or
-                <strong>text</strong></label>
-            <input type="text" id="cards-name-filter-selector">
+            <div class="cards-controls">
+                <div class="cards-controls-left-or-top-panel">
+                    <label for="cards-color-selector">Filter cards by <strong>color</strong></label>
+                    <select class="cards-color-selector" id="cards-color-selector" multiple
+                        onchange="filterCards()">
+                        <option class="cards-color-option" value="White">White</option>
+                        <option class="cards-color-option" value="Blue">Blue</option>
+                        <option class="cards-color-option" value="Black">Black</option>
+                        <option class="cards-color-option" value="Red">Red</option>
+                        <option class="cards-color-option" value="Green">Green</option>
+                    </select>
 
-            <label for="cards-color-selector">Filter cards by <strong>color</strong></label>
-            <select class="CardsPage-card-color-selector" id="cards-color-selector" multiple onchange="filterCards()">
-                <option class="cards-color-option" value="White">White</option>
-                <option class="cards-color-option" value="Blue">Blue</option>
-                <option class="cards-color-option" value="Black">Black</option>
-                <option class="cards-color-option" value="Red">Red</option>
-                <option class="cards-color-option" value="Green">Green</option>
-            </select>
+                    <label for="cards-type-selector">Filter cards by <strong>type</strong></label>
+                    <select class="cards-type-selector" id="cards-type-selector" multiple
+                        onchange="filterCards()">
+                        <option class="cards-type-option" value="Artifact">Artifact</option>
+                        <option class="cards-type-option" value="Autobot">Autobot</option>
+                        <option class="cards-type-option" value="Card">Card</option>
+                        <option class="cards-type-option" value="Character">Character</option>
+                        <option class="cards-type-option" value="Conspiracy">Conspiracy</option>
+                        <option class="cards-type-option" value="Creature">Creature</option>
+                        <option class="cards-type-option" value="Dragon">Dragon</option>
+                        <option class="cards-type-option" value="Elemental">Elemental</option>
+                        <option class="cards-type-option" value="Enchantment">Enchantment</option>
+                        <option class="cards-type-option" value="Goblin">Goblin</option>
+                        <option class="cards-type-option" value="Hero">Hero</option>
+                        <option class="cards-type-option" value="Instant">Instant</option>
+                        <option class="cards-type-option" value="Jaguar">Jaguar</option>
+                        <option class="cards-type-option" value="Knights">Knights</option>
+                        <option class="cards-type-option" value="Land">Land</option>
+                        <option class="cards-type-option" value="Phenomenon">Phenomenon</option>
+                        <option class="cards-type-option" value="Plane">Plane</option>
+                        <option class="cards-type-option" value="Planeswalker">Planeswalker</option>
+                        <option class="cards-type-option" value="Scheme">Scheme</option>
+                        <option class="cards-type-option" value="Sorcery">Sorcery</option>
+                        <option class="cards-type-option" value="Specter">Specter</option>
+                        <option class="cards-type-option" value="Summon">Summon</option>
+                        <option class="cards-type-option" value="Tribal">Tribal</option>
+                        <option class="cards-type-option" value="Vanguard">Vanguard</option>
+                        <option class="cards-type-option" value="Wolf">Wolf</option>
+                        <option class="cards-type-option" value="You’ll">You’ll</option>
+                    </select>
+                </div>
 
-            <label for="cards-type-selector">Filter cards by <strong>color</strong></label>
-            <select class="CardsPage-type-color-selector" id="cards-type-selector" multiple onchange="filterCards()">
-                <option class="cards-type-option" value="Artifact">Artifact</option>
-                <option class="cards-type-option" value="Autobot">Autobot</option>
-                <option class="cards-type-option" value="Card">Card</option>
-                <option class="cards-type-option" value="Character">Character</option>
-                <option class="cards-type-option" value="Conspiracy">Conspiracy</option>
-                <option class="cards-type-option" value="Creature">Creature</option>
-                <option class="cards-type-option" value="Dragon">Dragon</option>
-                <option class="cards-type-option" value="Elemental">Elemental</option>
-                <option class="cards-type-option" value="Enchantment">Enchantment</option>
-                <option class="cards-type-option" value="Goblin">Goblin</option>
-                <option class="cards-type-option" value="Hero">Hero</option>
-                <option class="cards-type-option" value="Instant">Instant</option>
-                <option class="cards-type-option" value="Jaguar">Jaguar</option>
-                <option class="cards-type-option" value="Knights">Knights</option>
-                <option class="cards-type-option" value="Land">Land</option>
-                <option class="cards-type-option" value="Phenomenon">Phenomenon</option>
-                <option class="cards-type-option" value="Plane">Plane</option>
-                <option class="cards-type-option" value="Planeswalker">Planeswalker</option>
-                <option class="cards-type-option" value="Scheme">Scheme</option>
-                <option class="cards-type-option" value="Sorcery">Sorcery</option>
-                <option class="cards-type-option" value="Specter">Specter</option>
-                <option class="cards-type-option" value="Summon">Summon</option>
-                <option class="cards-type-option" value="Tribal">Tribal</option>
-                <option class="cards-type-option" value="Vanguard">Vanguard</option>
-                <option class="cards-type-option" value="Wolf">Wolf</option>
-                <option class="cards-type-option" value="You’ll">You’ll</option>
-            </select>
+                <div class="cards-controls-right-or-bottom-panel">
+                    <label for="cards-name-filter-selector">Filter cards by <strong>name</strong> or
+                        <strong>text</strong></label>
+                    <input type="text" id="cards-name-filter-selector" class="cards-name-filter-selector">
 
-            <label for="cards-alphabetical-sort">Sort cards <strong>alphabetically</strong></label>
-            <select class="CardsPage-card-color-selector" id="cards-alphabetical-sort"
-                onchange="handleSortingOrder(this)">
-                <option class="cards-sort-option" value="Sort" selected="true" disabled="disabled">Sort</option>
-                <option class="cards-ascending-option" value="Ascending">Ascending</option>
-                <option class="cards-descending-option" value="Descending">Descending</option>
-            </select>
+                    <label for="cards-alphabetical-sort">Sort cards <strong>alphabetically</strong></label>
+                    <select class="cards-alphabetical-sort" id="cards-alphabetical-sort"
+                        onchange="handleSortingOrder(this)">
+                        <option class="cards-sort-option" value="Sort" selected="true" disabled="disabled">Sort</option>
+                        <option class="cards-ascending-option" value="Ascending">Ascending</option>
+                        <option class="cards-descending-option" value="Descending">Descending</option>
+                    </select>
+
+                    <div class="cards-number-of-cards-found">Cards found: <strong><span id="cards-number"></span></strong></div>
+
+                    <button class="cards-page-back-button" onclick="goBack()">Home</button>
+                </div>
+            </div>
+
+            <div class="cards-explanation"><em>Please hold the CTRL button when clicking to deselect or to select multiple options</em></div>
 
             <div id="display-cards-container"></div>
         </div>
-        <button class="cards-page-back-button" onclick="goBack()">back</button>
     </div>
 
     <script src="js/cards-page.js"></script>

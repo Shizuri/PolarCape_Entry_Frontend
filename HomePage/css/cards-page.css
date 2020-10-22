@@ -8,25 +8,19 @@
 body {
     background-color: var(--color-background);
     box-sizing: border-box;
-    font-family: 'Dosis', sans-serif;
+    font-family: 'Rajdhani', sans-serif;
     font-weight: 400;
 }
 
 .cards-page-container {
-    font-size: 2rem;
-}
-
-.loading-cards {
-    /* display: inline; */
-}
-
-.cards-page-content {
     min-height: 100vh;
-    display: none;
+    min-width: 95vw;
+    display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    font-size: 2rem;
+    justify-content: flex-start;
+    font-size: 1.3rem;
+    color: var(--color-font);
 }
 
 .cards-page-message {
@@ -37,8 +31,151 @@ body {
     font-weight: 600;
 }
 
+.loading-cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+.cards-page-content {
+    min-height: 100vh;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.cards-controls {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.cards-controls-left-or-top-panel{
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: 400;
+}
+
+.cards-controls-right-or-bottom-panel {
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: 400;
+}
+
+.cards-type-selector, .cards-color-selector {
+    font-size: 1.5rem;
+    color: var(--color-font);
+    background-color: var(--color-background);
+    border-radius: 5px;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    /* This allows horizontal placement */
+    white-space: normal;
+    outline: none;
+}
+
+.cards-color-selector {
+    height: 33px;
+    width: 550px;
+    overflow: hidden;
+    border: none;
+    margin-bottom: 20px;
+}
+
+.cards-type-selector {
+    height: 220px;
+    width: 550px;
+    overflow: hidden;
+    border: none;
+    margin-bottom: 20px;
+}
+
+.cards-type-option, .cards-color-option {
+    height: auto;
+    width: 130px;
+    font-weight: 500;
+    border: none;
+    background-color: var(--color-background);
+    display: inline-block;
+    border-radius: 5px;
+    transition: background-color 0.2s ease-out, color 0.2s ease-out;
+}
+
+.cards-color-option {
+    width: 110px;
+}
+
+.cards-type-option {
+    width: 130px;
+}
+
+.cards-type-option:hover, .cards-color-option:hover {
+    background-color: var(--color-accent);
+}
+
+.cards-name-filter-selector {
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    background-color: var(--color-background);
+    width: 250px;
+    height: 30px;
+    color: var(--color-font);
+    padding-left: 5px;
+    box-shadow: none;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: 500;
+    border: 1px solid var(--color-accent);
+    transition: background-color 0.3s ease-out, color 0.3s ease-out;
+}
+
+.cards-name-filter-selector:hover {
+    background-color: var(--color-accent);
+}
+
+.cards-name-filter-selector:focus {
+    outline: none;
+}
+
+.cards-alphabetical-sort {
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    background-color: var(--color-background);
+    width: 250px;
+    height: 30px;
+    color: var(--color-font);
+    box-shadow: none;
+    text-align-last: center;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: 500;
+    border: 1px solid var(--color-accent);
+    transition: background-color 0.3s ease-out, color 0.3s ease-out;
+}
+
+.cards-alphabetical-sort:hover {
+    background-color: var(--color-accent);
+}
+
+.cards-number-of-cards-found {
+    margin-bottom: 20px;
+}
+
 .cards-page-back-button {
-    margin-top: 50px;
+    margin-bottom: 20px;
     border: none;
     background-color: var(--color-accent);
     color: var(--color-font);
@@ -55,6 +192,18 @@ body {
     color: var(--color-accent);
 }
 
+.cards-explanation {
+    width: 80%;
+    font-size: 1rem;
+    opacity: 0.7;
+    text-align: center;
+}
+
 .display-cards-container {
     font-size: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
