@@ -12,6 +12,7 @@ let filteredCards = [] // Filtered cards
 
 let cardColorSelectedValues = [] // The colors selected in the multi select
 let cardTypeSelectedValues = [] // The types selected in the multi select
+let searchTerm = '' // The search term to search cards by name or text
 
 const urlParams = new URLSearchParams(window.location.search)
 const name = urlParams.get('index-name-input')
@@ -73,13 +74,13 @@ const checkCards = () => {
 // Function that renders the cards to the page
 const renderData = data => {
     // Get the element that will be updated
-    const theElement = document.querySelector('#the-element')
+    const theElement = document.querySelector('#display-cards-container')
     // Clear any previous data
     theElement.replaceChildren()
     // Go through each element and append it in the list
     data.forEach(card => {
         const div = document.createElement('div')
-        div.className = 'the-class'
+        div.className = 'display-cards-container'
         div.innerHTML = `<strong>Name: </strong> ${card.name} <strong>Colors: </strong> ${card.colors} <strong>Types: </strong> ${card.types}`
         theElement.append(div)
     })
@@ -101,17 +102,38 @@ const getSelectedOptions = element => {
     return options
 }
 
-document.getElementById('card-name-filter-selector').oninput = element => {
+// Sort the cards alphabetically
+const handleSortingOrder = event => {
+    const value = event.value
+    switch (value) {
+        case 'Ascending':
+            filteredCards.sort((a, b) => a.name.localeCompare(b.name))
+            break
+        case 'Descending':
+            filteredCards.sort((a, b) => b.name.localeCompare(a.name))
+            break
+        default:
+            break
+    }
+
+    renderData(filteredCards)
+}
+
+// Trigger when the search term changes to filter the cards. This way the user gets instant results without pressing Enter
+document.getElementById('cards-name-filter-selector').oninput = element => {
     // save this into global val than check in filterCards
-    console.log('element: ', element.target.value)
+    searchTerm = element.target.value
+    // Every time that the search term is changed, call the filter function and pass in the search term
+    filterCards()
 }
 
 const filterCards = () => {
     // Reset filtered cards to be all cards and then start filtering
     filteredCards = cards
+
     // FILTER BY COLOR
     // Get the color element selector
-    const colorSelector = document.getElementById('card-color-selector')
+    const colorSelector = document.getElementById('cards-color-selector')
     // Get the values selected by the user
     cardColorSelectedValues = getSelectedOptions(colorSelector)
     // Filter cards by card color
@@ -130,14 +152,15 @@ const filterCards = () => {
         }
         return false
     })
-    // Update the list on if an item is selected
+
+    // Update the list only if at least one item is selected
     if (cardColorSelectedValues.length > 0){
         filteredCards = cardsFilteredByColor
     }
 
     // FILTER BY TYPE
     // Get the color element selector
-    const typeSelector = document.getElementById('card-type-selector')
+    const typeSelector = document.getElementById('cards-type-selector')
     // Get the values selected by the user
     cardTypeSelectedValues = getSelectedOptions(typeSelector)
     // Filter cards by card color
@@ -156,9 +179,29 @@ const filterCards = () => {
         }
         return false
     })
-    // Update the list on if an item is selected
+
+    // Update the list only if at least one item is selected
     if (cardTypeSelectedValues.length > 0){
         filteredCards = cardsFilteredByType
+    }
+
+    // FILTER BY NAME OR TEXT
+    const cardsFilteredByNameOrText = filteredCards.filter(card => {
+        // Sometimes there is no entry for text, check for it
+        if (card.name && card.text) {
+            return (
+                card.name.toLowerCase().includes(searchTerm.toLowerCase())
+                || card.text.toLowerCase().includes(searchTerm.toLowerCase())
+            )
+        } else {
+            // If there is no entry for text, filter just by name
+            return (card.name.toLowerCase().includes(searchTerm.toLowerCase()))
+        }
+    })
+
+    // Update the list only if at least one letter is typed in the search box
+    if (searchTerm.length > 0){
+        filteredCards = cardsFilteredByNameOrText
     }
 
     renderData(filteredCards)
