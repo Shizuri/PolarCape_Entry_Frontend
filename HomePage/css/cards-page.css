@@ -1,8 +1,17 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 :root {
     --color-background: #e5eaf5;
     --color-font: #494d5f;
     --color-warning: #d83694;
     --color-accent: #d0bdf4;
+}
+
+::selection {
+    color: var(--color-background);
+    background: var(--color-font);
 }
 
 body {
@@ -56,7 +65,7 @@ body {
     flex-wrap: wrap;
 }
 
-.cards-controls-left-or-top-panel{
+.cards-controls-left-or-top-panel {
     max-width: 600px;
     display: flex;
     flex-direction: column;
@@ -206,4 +215,40 @@ body {
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+}
+
+/* Style only for Mozilla Firefox since it's the only browser that has issues with the Select horizontal styling*/
+
+@-moz-document url-prefix() {
+    .cards-type-selector, .cards-color-selector {
+        height: 153px;
+        width: 200px;
+        white-space: wrap;
+        border: 1px solid var(--color-accent);
+    }
+    .cards-type-option, .cards-color-option {
+        height: auto;
+        width: auto;
+        border: none;
+        display: block;
+    }
+}
+
+/* For mobile devices only */
+
+@media only screen and (pointer: coarse) {
+    .cards-type-selector, .cards-color-selector {
+        white-space: nowrap;
+        width: 250px;
+        height: 30px;
+        overflow: auto;
+        border: 1px solid var(--color-accent);
+    }
+    .cards-type-option, .cards-color-option {
+        height: auto;
+        width: auto;
+    }
+    .cards-page-container {
+        width: 100%;
+    }
 }

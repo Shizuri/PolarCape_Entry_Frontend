@@ -1,8 +1,17 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 :root {
     --color-background: #e5eaf5;
     --color-font: #494d5f;
     --color-warning: #d83694;
     --color-accent: #d0bdf4;
+}
+
+::selection {
+    color: var(--color-background);
+    background: var(--color-font);
 }
 
 body {
@@ -78,4 +87,33 @@ body {
 .index-submit-button:hover {
     background-color: var(--color-font);
     color: var(--color-accent);
+}
+
+@media (max-width: 600px) {
+    .form-container {
+        font-size: 1.5rem;
+    }
+    .index-name-input {
+        width: 60vw;
+        height: 30px;
+        margin-right: 5px;
+        margin-left: 5px;
+        margin-bottom: 10px;
+    }
+    .index-submit-button {
+        height: 30px;
+        margin-left: 5px;
+    }
+}
+
+@media (max-width: 260px) {
+    .HomePage-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .index-name-input {
+        width: 80%;
+    }
 }
