@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const getCards = () => {
         // GET Request.
         // fetch('https://api.magicthegathering.io/v1/cards?random=true&pageSize=100&language=English/')
-            fetch('https://raw.githubusercontent.com/Shizuri/entry_frontend_react_polar/master/src/cards.json') // mock api for testing
+        fetch('https://raw.githubusercontent.com/Shizuri/entry_frontend_react_polar/master/src/cards.json') // mock api for testing
             // Handle success
             // Convert to json
             .then(response => {
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     cards = data.cards // Set cards data
                     filteredCards = data.cards // Set filtered cards that will be displayed
                     loaded = true // Cards are loaded
-                    renderData(data.cards)
+                    renderCards(data.cards)
                     document.getElementById('cards-page-content').style.display = 'flex'
                     document.getElementById('loading-cards').style.display = 'none'
                 }
@@ -70,17 +70,56 @@ const goBack = () => {
 }
 
 // Function that renders the cards to the page
-const renderData = data => {
+const renderCards = data => {
     // Get the element that will be updated
-    const theElement = document.querySelector('#display-cards-container')
+    const displayCardsContainer = document.querySelector('#display-cards-container')
     // Clear any previous data
-    theElement.replaceChildren()
+    displayCardsContainer.replaceChildren()
     // Go through each element and append it in the list
     data.forEach(card => {
-        const div = document.createElement('div')
-        div.className = 'display-cards-container'
-        div.innerHTML = `<strong>Name: </strong> ${card.name} <strong>Colors: </strong> ${card.colors} <strong>Types: </strong> ${card.types}`
-        theElement.append(div)
+        // Create main card div
+        const cardDiv = document.createElement('div')
+        cardDiv.className = 'card'
+
+        // Create card image panel div
+        const cardImagePanelDiv = document.createElement('div')
+        cardImagePanelDiv.className = 'card-image-panel'
+        if(card.imageUrl){
+            cardImagePanelDiv.innerHTML = `<div><img class="card-image" src=${card.imageUrl} alt=${card.name}</div>`
+        } else {
+            cardImagePanelDiv.innerHTML = `<div>
+                                                <img class="card-image" src=/images/MtGCardBack.jpg alt=${card.name}>
+                                                <div class="card-image-not-found">Image not found</div>
+                                           </div>`
+        }
+        // Append it ot the main card div
+        cardDiv.appendChild(cardImagePanelDiv)
+
+        // Create card data panel div
+        const cardDataPanelDiv = document.createElement('div')
+        cardDataPanelDiv.className = 'card-data-panel'
+        // If the API provides a type adapt to the scenario where there is more than one.
+        let types = '-no type-'
+        if(card.types){
+            types = card.types.length > 1 ? 'Types' : 'Type'
+        }
+
+        let colors = 'Card is colorless'
+        if(card.colors.length > 0){
+            colors = card.colors.length > 1 ? 'Colors:' : 'Color:'
+        }
+        cardDataPanelDiv.innerHTML = `<div class="card-data-panel">
+                                        <div><strong>Name:</strong> ${card.name}</div>
+                                        <div><strong>${types}:</strong> ${formatArrayOfStrings(card.types)}</div>
+                                        <div><strong>Set name:</strong> ${card.setName}</div>
+                                        <div><strong>${colors} </strong> ${formatArrayOfStrings(card.colors)}</div>
+                                        <div><strong>Text:</strong> ${card.text}</div>
+                                    </div>`
+        // Append it ot the main card div
+        cardDiv.appendChild(cardDataPanelDiv)
+
+        // Append the main card div to the container div
+        displayCardsContainer.appendChild(cardDiv)
     })
 
     document.getElementById('cards-number').textContent = filteredCards.length
@@ -102,6 +141,17 @@ const getSelectedOptions = element => {
     return options
 }
 
+// Helper function to print out an array of string
+const formatArrayOfStrings = arr => {
+    if (!arr) {
+        return `-- no data --`
+    } else if (arr.length === 1) {
+        return `${arr[0]}`
+    } else {
+        return arr.join(', ')
+    }
+}
+
 // Sort the cards alphabetically
 const handleSortingOrder = event => {
     const value = event.value
@@ -116,7 +166,7 @@ const handleSortingOrder = event => {
             break
     }
 
-    renderData(filteredCards)
+    renderCards(filteredCards)
 }
 
 // Trigger when the search term changes to filter the cards. This way the user gets instant results without pressing Enter
@@ -204,5 +254,5 @@ const filterCards = () => {
         filteredCards = cardsFilteredByNameOrText
     }
 
-    renderData(filteredCards)
+    renderCards(filteredCards)
 }
