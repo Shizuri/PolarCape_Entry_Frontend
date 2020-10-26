@@ -3,10 +3,10 @@
 }
 
 :root {
-    --color-background: #e5eaf5;
-    --color-font: #494d5f;
-    --color-warning: #d83694;
-    --color-accent: #d0bdf4;
+    --color-background: #2c3531;
+    --color-font: #d1e8e2;
+    --color-warning: #ffcb9a;
+    --color-accent: #116466;
 }
 
 ::selection {
