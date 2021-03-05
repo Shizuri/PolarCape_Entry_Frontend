@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Catch errors
             .catch(error => {
                 if (isMounted) {
-                    console.log('Request Failed with error: ', error)
+                    console.error('Request Failed with error: ', error)
                 }
             })
 
@@ -105,7 +105,7 @@ const renderCards = data => {
         }
 
         let colors = 'Card is colorless'
-        if(card.colors.length > 0){
+        if(card.colors && card.colors.length > 0){
             colors = card.colors.length > 1 ? 'Colors:' : 'Color:'
         }
         cardDataPanelDiv.innerHTML = `<div class="card-data-panel">
